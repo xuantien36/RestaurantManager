@@ -3,6 +3,7 @@
     package="com.t3h.restaurantmanager">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,12 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".DetailActivity"/>
+        <activity android:name=".acttivity.LoginActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".acttivity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".acttivity.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,14 +1,12 @@
-package com.t3h.restaurantmanager;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
+package com.t3h.restaurantmanager.acttivity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
+import com.t3h.restaurantmanager.R;
 import com.t3h.restaurantmanager.api.ApiBuilder;
 import com.t3h.restaurantmanager.api.ResponsiveRegister;
+import com.t3h.restaurantmanager.base.BaseActivity;
 import com.t3h.restaurantmanager.databinding.ActivityRegisterBinding;
 
 import okhttp3.MediaType;
@@ -17,20 +15,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterActivity extends AppCompatActivity {
-    private ActivityRegisterBinding binding;
-
+public class RegisterActivity extends BaseActivity<ActivityRegisterBinding> {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-       binding=DataBindingUtil.setContentView(this,R.layout.activity_register);
-
+    protected void initAct() {
         init();
     }
 
-    private void init() {
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_register;
+    }
 
-       binding.btnRegister.setOnClickListener(new View.OnClickListener() {
+    private void init() {
+        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String userName = binding.edtRegisterUser.getText().toString();
@@ -45,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (response.body().getStatus() == 0) {
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                     }
 
@@ -53,8 +51,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 });
-
-
             }
         });
 
